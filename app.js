@@ -792,11 +792,21 @@ function renderCalendar() {
     const dayProgress = history[dateKey] || {};
     const started = Object.values(dayProgress).some(Boolean);
     const complete = completedDays.has(dateKey);
+    const dayStreak = complete ? countStreakFrom(dateKey, completedDays) : 0;
+    const milestone = streakGoals.includes(dayStreak);
     const cell = document.createElement("div");
-    cell.className = `calendar-day${started ? " started" : ""}${complete ? " complete" : ""}${dateKey === todayKey ? " today" : ""}`;
+    cell.className = `calendar-day${started ? " started" : ""}${complete ? " complete" : ""}${milestone ? " milestone" : ""}${dateKey === todayKey ? " today" : ""}`;
     cell.innerHTML = `
       <strong>${day}</strong>
-      <span>${complete ? '<i class="basketball-stamp" aria-label="Completed"></i>' : started ? "Started" : ""}</span>
+      <span>${
+        milestone
+          ? `<i class="goal-stamp" aria-label="${dayStreak} day goal reached"></i>`
+          : complete
+            ? '<i class="basketball-stamp" aria-label="Completed"></i>'
+            : started
+              ? "Started"
+              : ""
+      }</span>
     `;
     calendarGrid.append(cell);
   }
