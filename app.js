@@ -391,7 +391,7 @@ const calendarGrid = document.querySelector("#progress-calendar");
 const calendarMonthText = document.querySelector("#calendar-month");
 const prevMonthButton = document.querySelector("#prev-month");
 const nextMonthButton = document.querySelector("#next-month");
-const streakGoals = [7, 14, 30, 50, 75, 100, 150, 200];
+const streakGoals = [1, 3, 7, 14, 30, 50, 75, 100, 150, 200];
 const calendarDate = new Date();
 
 if ("serviceWorker" in navigator) {
