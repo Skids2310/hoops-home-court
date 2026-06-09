@@ -75,6 +75,22 @@
         </div>
       </section>
 
+      <section class="section calendar-section" aria-labelledby="calendar-title">
+        <div class="calendar-header">
+          <div class="section-copy compact">
+            <p class="eyebrow">Practice calendar</p>
+            <h2 id="calendar-title">Monthly view</h2>
+            <p>Completed days count toward streaks. Started days show when some check-in items were ticked.</p>
+          </div>
+          <div class="calendar-controls" aria-label="Calendar month controls">
+            <button class="button reset" type="button" id="prev-month">Previous</button>
+            <strong id="calendar-month">This month</strong>
+            <button class="button reset" type="button" id="next-month">Next</button>
+          </div>
+        </div>
+        <div class="calendar-grid" id="progress-calendar" aria-live="polite"></div>
+      </section>
+
       <section class="section badge-section" aria-labelledby="badges-title">
         <div class="section-copy compact">
           <p class="eyebrow">Achievement badges</p>

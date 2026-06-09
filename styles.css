@@ -719,6 +719,93 @@ footer p {
   padding-top: 0;
 }
 
+.calendar-section {
+  padding-top: 0;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.calendar-controls > strong {
+  min-width: 170px;
+  text-align: center;
+  font-family: "Barlow Condensed", Arial, sans-serif;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calendar-weekday {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.calendar-day {
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.calendar-day.empty {
+  visibility: hidden;
+}
+
+.calendar-day strong {
+  font-size: 1rem;
+}
+
+.calendar-day span {
+  min-height: 18px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.calendar-day.started {
+  border-color: rgba(242, 106, 33, 0.38);
+  background: #fff7f1;
+}
+
+.calendar-day.complete {
+  border-color: rgba(31, 143, 104, 0.45);
+  background: #edf7f4;
+}
+
+.calendar-day.complete span {
+  color: var(--green);
+}
+
+.calendar-day.today {
+  outline: 3px solid rgba(23, 107, 179, 0.24);
+  outline-offset: 2px;
+}
+
 .badge-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -832,6 +919,11 @@ footer p {
   .streak-summary {
     grid-template-columns: 1fr;
   }
+
+  .calendar-header {
+    align-items: start;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 620px) {
@@ -867,5 +959,18 @@ footer p {
   .link-grid,
   .badge-grid {
     grid-template-columns: 1fr;
+  }
+
+  .calendar-grid {
+    gap: 5px;
+  }
+
+  .calendar-day {
+    min-height: 58px;
+    padding: 7px;
+  }
+
+  .calendar-day span {
+    font-size: 0.68rem;
   }
 }

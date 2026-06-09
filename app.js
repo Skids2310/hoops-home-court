@@ -387,7 +387,12 @@ const currentStreakText = document.querySelector("#current-streak");
 const bestStreakText = document.querySelector("#best-streak");
 const nextGoalText = document.querySelector("#next-goal");
 const badgeGrid = document.querySelector("#badge-grid");
+const calendarGrid = document.querySelector("#progress-calendar");
+const calendarMonthText = document.querySelector("#calendar-month");
+const prevMonthButton = document.querySelector("#prev-month");
+const nextMonthButton = document.querySelector("#next-month");
 const streakGoals = [7, 14, 30, 50, 75, 100, 150, 200];
+const calendarDate = new Date();
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -673,6 +678,13 @@ function shiftDateKey(dateKey, offsetDays) {
   return `${year}-${month}-${day}`;
 }
 
+function toDateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function readProgressHistory() {
   return JSON.parse(localStorage.getItem("homeCourtProgressByDate") || "{}");
 }
@@ -741,6 +753,55 @@ function renderStreaks() {
   });
 }
 
+function renderCalendar() {
+  if (!calendarGrid || !calendarMonthText) {
+    return;
+  }
+
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+  const todayKey = getTodayKey();
+  const history = readProgressHistory();
+  const completedDays = new Set(readCompletedDays());
+  const firstDay = new Date(year, month, 1);
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  const leadingBlanks = (firstDay.getDay() + 6) % 7;
+
+  calendarMonthText.textContent = firstDay.toLocaleDateString("en-AU", {
+    month: "long",
+    year: "numeric",
+  });
+
+  calendarGrid.innerHTML = "";
+  ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].forEach((day) => {
+    const label = document.createElement("div");
+    label.className = "calendar-weekday";
+    label.textContent = day;
+    calendarGrid.append(label);
+  });
+
+  for (let blank = 0; blank < leadingBlanks; blank += 1) {
+    const empty = document.createElement("div");
+    empty.className = "calendar-day empty";
+    calendarGrid.append(empty);
+  }
+
+  for (let day = 1; day <= totalDays; day += 1) {
+    const date = new Date(year, month, day);
+    const dateKey = toDateKey(date);
+    const dayProgress = history[dateKey] || {};
+    const started = Object.values(dayProgress).some(Boolean);
+    const complete = completedDays.has(dateKey);
+    const cell = document.createElement("div");
+    cell.className = `calendar-day${started ? " started" : ""}${complete ? " complete" : ""}${dateKey === todayKey ? " today" : ""}`;
+    cell.innerHTML = `
+      <strong>${day}</strong>
+      <span>${complete ? "Done" : started ? "Started" : ""}</span>
+    `;
+    calendarGrid.append(cell);
+  }
+}
+
 function updateProgress() {
   if (!meterFill || !progressText || progressInputs.length === 0) {
     return;
@@ -769,6 +830,7 @@ function updateProgress() {
   }
   saveCompletedDays([...completedDays]);
   renderStreaks();
+  renderCalendar();
 }
 
 filterButtons.forEach((button) => {
@@ -830,6 +892,20 @@ if (resetProgress) {
   });
 }
 
+if (prevMonthButton) {
+  prevMonthButton.addEventListener("click", () => {
+    calendarDate.setMonth(calendarDate.getMonth() - 1);
+    renderCalendar();
+  });
+}
+
+if (nextMonthButton) {
+  nextMonthButton.addEventListener("click", () => {
+    calendarDate.setMonth(calendarDate.getMonth() + 1);
+    renderCalendar();
+  });
+}
+
 const savedProgress = JSON.parse(localStorage.getItem("homeCourtProgress") || "{}");
 const savedHistory = readProgressHistory();
 const todayProgress = savedHistory[getTodayKey()] || savedProgress;
@@ -843,3 +919,4 @@ renderDailySkill();
 setSession();
 updateProgress();
 renderStreaks();
+renderCalendar();
