@@ -796,7 +796,7 @@ function renderCalendar() {
     cell.className = `calendar-day${started ? " started" : ""}${complete ? " complete" : ""}${dateKey === todayKey ? " today" : ""}`;
     cell.innerHTML = `
       <strong>${day}</strong>
-      <span>${complete ? "Done" : started ? "Started" : ""}</span>
+      <span>${complete ? '<i class="basketball-stamp" aria-label="Completed"></i>' : started ? "Started" : ""}</span>
     `;
     calendarGrid.append(cell);
   }
