@@ -42,6 +42,6 @@ http://localhost:4173
 - Installable PWA metadata
 - Offline caching through `service-worker.js`
 - At-home session builder
-- Skills and games library
-- Game score tracking with top 3 results
+- Skills and records library
+- Record score tracking with top 3 results
 - Daily progress streaks and achievement badges
