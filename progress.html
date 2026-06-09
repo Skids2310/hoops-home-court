@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#176bb3" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Home Court" />
+    <title>Progress | Aussie Hoops Home Court</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/app-icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Aussie Hoops Home Court">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>Home Court</strong>
+          <small>Aussie Hoops practice</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="App pages">
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="games.html">Games</a>
+        <a class="active" href="progress.html">Progress</a>
+        <a href="links.html">Official Links</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Parent helper</p>
+        <h1>Track effort, not perfection</h1>
+        <p>Tick off today&apos;s wins. Progress saves on this device so kids can see their effort build.</p>
+      </section>
+
+      <section class="section progress-section page-section" aria-labelledby="progress-title">
+        <div class="progress-copy">
+          <h2 id="progress-title">Today&apos;s check-in</h2>
+          <p>Keep the focus on safe movement, confidence, and trying again.</p>
+          <div class="streak-summary" aria-label="Streak summary">
+            <div>
+              <span>Current streak</span>
+              <strong id="current-streak">0 days</strong>
+            </div>
+            <div>
+              <span>Best streak</span>
+              <strong id="best-streak">0 days</strong>
+            </div>
+            <div>
+              <span>Next goal</span>
+              <strong id="next-goal">7 days</strong>
+            </div>
+          </div>
+        </div>
+        <div class="tracker">
+          <label><input type="checkbox" data-progress="warmup" /> Warmed up safely</label>
+          <label><input type="checkbox" data-progress="skill" /> Practiced one skill</label>
+          <label><input type="checkbox" data-progress="game" /> Played one challenge</label>
+          <label><input type="checkbox" data-progress="reflection" /> Named one thing that improved</label>
+          <div class="meter" aria-label="Progress meter">
+            <span id="meter-fill"></span>
+          </div>
+          <strong id="progress-text">0 of 4 complete</strong>
+          <button class="button reset" type="button" id="reset-progress">Reset today</button>
+        </div>
+      </section>
+
+      <section class="section badge-section" aria-labelledby="badges-title">
+        <div class="section-copy compact">
+          <p class="eyebrow">Achievement badges</p>
+          <h2 id="badges-title">Streak goals</h2>
+          <p>Complete all four check-in items on consecutive days to unlock badges.</p>
+        </div>
+        <div class="badge-grid" id="badge-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>A good session can be short. The main job is helping kids want to come back tomorrow.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

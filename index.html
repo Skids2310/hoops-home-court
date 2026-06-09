@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#176bb3" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Home Court" />
+    <title>Aussie Hoops Home Court</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/app-icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Aussie Hoops Home Court">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>Home Court</strong>
+          <small>Aussie Hoops practice</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="App pages">
+        <a class="active" href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="games.html">Games</a>
+        <a href="progress.html">Progress</a>
+        <a href="links.html">Official Links</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <img src="assets/home-hoops-hero.png" alt="Kids practicing basketball at home on a driveway" />
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">For kids and parents at home</p>
+          <h1 id="hero-title">Aussie Hoops Home Court</h1>
+          <p>
+            Choose a quick session, practice the right number of skills, then finish with a game built
+            from those skills.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#session-builder">Build a session</a>
+            <a class="button secondary" href="links.html">Find programs</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-panel" id="session-builder" aria-labelledby="builder-title">
+        <div>
+          <p class="eyebrow">Today&apos;s session</p>
+          <h2 id="builder-title">Pick time, then focus</h2>
+        </div>
+        <div class="session-picker">
+          <div>
+            <span class="control-label">Time</span>
+            <div class="session-controls" role="group" aria-label="Session length">
+              <button class="chip active" type="button" data-session="10">10 min</button>
+              <button class="chip" type="button" data-session="15">15 min</button>
+              <button class="chip" type="button" data-session="20">20 min</button>
+            </div>
+          </div>
+          <div>
+            <span class="control-label">Focus</span>
+            <div class="session-controls" role="group" aria-label="Session focus">
+              <button class="chip active" type="button" data-focus="ball">Ball control</button>
+              <button class="chip" type="button" data-focus="footwork">Footwork</button>
+              <button class="chip" type="button" data-focus="team">Passing</button>
+              <button class="chip" type="button" data-focus="shooting">Shooting</button>
+              <button class="chip" type="button" data-focus="defense">Defense</button>
+              <button class="chip" type="button" data-focus="rebounding">Rebounding</button>
+            </div>
+          </div>
+        </div>
+        <div class="session-output" id="session-output" aria-live="polite"></div>
+      </section>
+
+      <section class="section home-links" aria-labelledby="start-title">
+        <div class="section-copy compact">
+          <p class="eyebrow">Start small</p>
+          <h2 id="start-title">What would you like to do next?</h2>
+        </div>
+        <div class="link-grid">
+          <a href="skills.html">
+            <span>Practice at home</span>
+            <strong>Skill Cards</strong>
+          </a>
+          <a href="games.html">
+            <span>Make it playful</span>
+            <strong>Games</strong>
+          </a>
+          <a href="progress.html">
+            <span>Tick off today</span>
+            <strong>Progress</strong>
+          </a>
+          <a href="links.html">
+            <span>Aussie Hoops pages</span>
+            <strong>Official Links</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Prototype concept for at-home Aussie Hoops practice support.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

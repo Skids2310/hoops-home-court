@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#176bb3" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Home Court" />
+    <title>Games | Aussie Hoops Home Court</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/app-icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Aussie Hoops Home Court">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>Home Court</strong>
+          <small>Aussie Hoops practice</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="App pages">
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a class="active" href="games.html">Games</a>
+        <a href="progress.html">Progress</a>
+        <a href="links.html">Official Links</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Games and challenges</p>
+        <h1>Turn reps into play</h1>
+        <p>Simple activities that help kids practise without making home feel like training.</p>
+      </section>
+
+      <section class="section activity-band page-section" aria-labelledby="games-title">
+        <div class="section-copy compact">
+          <h2 id="games-title">Pick a game by skill</h2>
+          <p>Each game lists the skills it supports so parents can match play to the session.</p>
+          <div class="filter-row" role="group" aria-label="Filter games">
+            <button class="pill active" type="button" data-game-filter="all">All</button>
+            <button class="pill" type="button" data-game-filter="ball">Ball control</button>
+            <button class="pill" type="button" data-game-filter="footwork">Footwork</button>
+            <button class="pill" type="button" data-game-filter="team">Passing</button>
+            <button class="pill" type="button" data-game-filter="shooting">Shooting</button>
+            <button class="pill" type="button" data-game-filter="defense">Defense</button>
+            <button class="pill" type="button" data-game-filter="rebounding">Rebounding</button>
+            <button class="pill" type="button" data-game-filter="game">Game sense</button>
+          </div>
+        </div>
+        <div class="game-board" id="game-grid"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Use safe markers such as chalk, cones, socks, or shoes.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
