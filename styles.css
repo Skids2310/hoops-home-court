@@ -312,7 +312,7 @@ h3 {
   gap: 12px;
 }
 
-.session-output div,
+.session-output > div,
 .skill-card,
 .game-board article,
 .tracker,
@@ -438,6 +438,146 @@ h3 {
   stroke-width: 5;
 }
 
+.drill-animation {
+  width: 100%;
+  aspect-ratio: 13 / 7.5;
+  margin: 4px 0 14px;
+  overflow: hidden;
+  border: 1px solid rgba(22, 32, 51, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 212, 73, 0.2), transparent 42%),
+    #f4fbf8;
+}
+
+.drill-animation svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.drill-animation .court {
+  fill: rgba(237, 247, 244, 0.95);
+  stroke: rgba(22, 32, 51, 0.16);
+  stroke-width: 2;
+}
+
+.drill-animation .court-line,
+.drill-animation .key {
+  fill: none;
+  stroke: rgba(22, 32, 51, 0.16);
+  stroke-width: 2;
+}
+
+.drill-animation .hoop {
+  fill: none;
+  stroke: var(--orange-dark);
+  stroke-width: 5;
+}
+
+.drill-animation .cone {
+  fill: white;
+  stroke: var(--green);
+  stroke-width: 4;
+}
+
+.drill-animation .route {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5;
+  opacity: 0.88;
+}
+
+.drill-animation .route-one {
+  stroke: var(--orange);
+  stroke-dasharray: 18 12;
+  animation: route-flow 1.8s linear infinite;
+}
+
+.drill-animation .route-two {
+  stroke: var(--blue);
+  stroke-dasharray: 11 10;
+  animation: route-flow 1.4s linear infinite reverse;
+}
+
+.drill-animation .route-three {
+  stroke: var(--pink);
+  stroke-dasharray: 4 12;
+  animation: route-flow 1.2s linear infinite;
+}
+
+.drill-animation .player {
+  fill: var(--blue);
+  stroke: white;
+  stroke-width: 4;
+  filter: drop-shadow(0 5px 6px rgba(22, 32, 51, 0.16));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.drill-animation .ball {
+  fill: var(--orange);
+  stroke: var(--ink);
+  stroke-width: 2;
+  filter: drop-shadow(0 4px 5px rgba(22, 32, 51, 0.18));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.drill-animation .sparkles path {
+  fill: none;
+  stroke: var(--sun);
+  stroke-linecap: round;
+  stroke-width: 4;
+  animation: sparkle-pop 1.5s ease-in-out infinite;
+}
+
+.drill-animation.ball .player-one {
+  animation: dribble-player 2.7s ease-in-out infinite;
+}
+
+.drill-animation.ball .ball {
+  animation: dribble-ball 0.56s ease-in-out infinite, ball-path 2.7s ease-in-out infinite;
+}
+
+.drill-animation.team .ball {
+  animation: pass-ball 1.45s ease-in-out infinite;
+}
+
+.drill-animation.team .player-two {
+  animation: ready-hands 1.45s ease-in-out infinite;
+}
+
+.drill-animation.shooting .ball {
+  animation: shot-arc 1.65s ease-in-out infinite;
+}
+
+.drill-animation.shooting .player-one {
+  animation: shoot-lift 1.65s ease-in-out infinite;
+}
+
+.drill-animation.footwork .player-one {
+  animation: footwork-zig 2.4s ease-in-out infinite;
+}
+
+.drill-animation.defense .player-one,
+.drill-animation.defense .player-two {
+  animation: defense-slide 1.7s ease-in-out infinite alternate;
+}
+
+.drill-animation.defense .player-two {
+  animation-delay: 0.18s;
+}
+
+.drill-animation.rebounding .ball {
+  animation: rebound-drop 1.45s ease-in-out infinite;
+}
+
+.drill-animation.rebounding .player-one {
+  animation: rebound-chase 1.45s ease-in-out infinite;
+}
+
 .official-heading {
   color: white;
   background:
@@ -449,7 +589,7 @@ h3 {
   color: rgba(255, 255, 255, 0.75);
 }
 
-.session-output div {
+.session-output > div {
   min-height: 146px;
   padding: 16px;
 }
@@ -639,6 +779,10 @@ footer p {
   background: var(--green);
   color: white;
   font-weight: 700;
+}
+
+.game-board .drill-animation {
+  flex: 0 0 auto;
 }
 
 .progress-section {
@@ -1077,6 +1221,150 @@ footer p {
 .fun-toast.show {
   opacity: 1;
   transform: translate(-50%, 0) scale(1);
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -60;
+  }
+}
+
+@keyframes sparkle-pop {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.82);
+    transform-origin: center;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes dribble-player {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(74px, -30px);
+  }
+}
+
+@keyframes dribble-ball {
+  0%,
+  100% {
+    r: 6;
+  }
+
+  50% {
+    r: 4.5;
+  }
+}
+
+@keyframes ball-path {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(82px, -24px);
+  }
+}
+
+@keyframes pass-ball {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(130px, -31px);
+  }
+}
+
+@keyframes ready-hands {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(12px, 0) scale(1.08);
+  }
+}
+
+@keyframes shot-arc {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(176px, -71px);
+  }
+}
+
+@keyframes shoot-lift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  45% {
+    transform: translate(0, -8px);
+  }
+}
+
+@keyframes footwork-zig {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(42px, -62px);
+  }
+
+  66% {
+    transform: translate(106px, 0);
+  }
+}
+
+@keyframes defense-slide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(42px);
+  }
+}
+
+@keyframes rebound-drop {
+  0%,
+  100% {
+    transform: translate(176px, -71px);
+  }
+
+  58% {
+    transform: translate(78px, -18px);
+  }
+}
+
+@keyframes rebound-chase {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  58% {
+    transform: translate(72px, -22px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

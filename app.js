@@ -506,6 +506,36 @@ function getSkillDiagram(skill) {
   `;
 }
 
+function getGameAnimation(game) {
+  const primaryTag = game.tags.find((tag) => ["ball", "team", "shooting", "footwork", "defense", "rebounding"].includes(tag)) || "game";
+  const title = `${game.title} animated drill`;
+  const className = `drill-animation ${primaryTag}`;
+
+  return `
+    <div class="${className}" aria-label="${title}" role="img">
+      <svg viewBox="0 0 260 150" focusable="false">
+        <rect class="court" x="8" y="8" width="244" height="134" rx="14" />
+        <path class="court-line" d="M130 8v134" />
+        <path class="key" d="M206 42h38v66h-38" />
+        <circle class="hoop" cx="218" cy="75" r="12" />
+        <circle class="cone cone-one" cx="48" cy="44" r="7" />
+        <circle class="cone cone-two" cx="88" cy="106" r="7" />
+        <circle class="cone cone-three" cx="154" cy="44" r="7" />
+        <path class="route route-one" d="M42 105 C64 42 98 40 122 78 S171 112 205 74" />
+        <path class="route route-two" d="M50 74 H190" />
+        <path class="route route-three" d="M94 108 C112 82 143 69 178 58" />
+        <circle class="player player-one" cx="42" cy="105" r="11" />
+        <circle class="player player-two" cx="78" cy="72" r="10" />
+        <circle class="ball" cx="42" cy="105" r="6" />
+        <g class="sparkles" aria-hidden="true">
+          <path d="M224 34v12M218 40h12" />
+          <path d="M38 28v10M33 33h10" />
+        </g>
+      </svg>
+    </div>
+  `;
+}
+
 function renderDailySkill() {
   if (!dailySkillName || !dailySkillBody || !dailySkillCue || !dailySkillTag || !dailySkillDiagram) {
     return;
@@ -614,6 +644,7 @@ function renderGames(filter = "all") {
       card.innerHTML = `
         <span class="number">${String(index + 1).padStart(2, "0")}</span>
         <h3>${game.title}</h3>
+        ${getGameAnimation(game)}
         <p>${game.body}</p>
         <div class="game-tags">${game.tags.join(" + ")}</div>
         <form class="score-form" data-score-form="${gameId}">
@@ -657,6 +688,7 @@ function getSessionPlan(minutes, focus) {
       body: `${focusGame.body} Focus: ${focusLabels[focus]}.`,
       score: focusGame.score,
       gameId: slugify(focusGame.title),
+      animation: getGameAnimation(focusGame),
     });
   }
 
@@ -685,6 +717,7 @@ function setSession(minutes = getActiveSessionValue(), focus = getActiveFocusVal
     card.innerHTML = `
       <span class="step-label">${step.label}</span>
       <strong>${step.title}</strong>
+      ${step.animation || ""}
       <small>${step.body}</small>
       ${
         step.gameId
